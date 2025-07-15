@@ -1,18 +1,27 @@
-using DevQuestion.Contracts;
+using DevQuestions.Application.Questions;
+using DevQuestionsContract.Questions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DevQuestions.Presenters;
+namespace DevQuestions.Presenters.Questions;
 
 [ApiController]
 [Route("[controller]")]
 public class QuestionsController : ControllerBase
 {
+    private readonly IQuestionsService _questionService;
+
+    public QuestionsController(IQuestionsService questionService)
+    {
+        _questionService = questionService;
+    }
+    
     [HttpPost]
     public async Task<IActionResult> Create(
-        [FromBody] CreateQuestionDto request, 
+        [FromBody] CreateQuestionDto request,
         CancellationToken cancellationToken)
     {
-        return this.Ok("Question created");
+        Guid questionId = await _questionService.Create(request, cancellationToken);
+        return this.Ok(questionId);
     }
 
     [HttpGet]
@@ -25,7 +34,7 @@ public class QuestionsController : ControllerBase
 
     [HttpGet("{questionId:guid}")]
     public async Task<IActionResult> GetById(
-        [FromRoute] Guid questionId, 
+        [FromRoute] Guid questionId,
         CancellationToken cancellationToken)
     {
         return this.Ok("Get question by id");
@@ -35,7 +44,7 @@ public class QuestionsController : ControllerBase
     [HttpPut("{questionId:guid}")]
     public async Task<IActionResult> UpdateQuestion(
         [FromRoute] Guid questionId, [
-        FromBody] UpdateQuestionsDto request, 
+        FromBody] UpdateQuestionsDto request,
         CancellationToken cancellationToken)
     {
         return this.Ok("Update question");
@@ -43,16 +52,16 @@ public class QuestionsController : ControllerBase
 
     [HttpDelete("{questionId:guid}")]
     public async Task<IActionResult> DeleteQuestion(
-        [FromRoute] Guid questionId, 
+        [FromRoute] Guid questionId,
         CancellationToken cancellationToken)
     {
         return this.Ok("Delete question");
     }
 
     [HttpPut("{questionId:guid}/solution")]
-    public async Task<IActionResult> SelectSolution (
-        [FromRoute] Guid questionId, 
-        [FromQuery] Guid answerId, 
+    public async Task<IActionResult> SelectSolution(
+        [FromRoute] Guid questionId,
+        [FromQuery] Guid answerId,
         CancellationToken cancellationToken)
     {
         return this.Ok("Select solution");
@@ -60,8 +69,8 @@ public class QuestionsController : ControllerBase
 
     [HttpGet("{questionId:guid}/answers")]
     public async Task<IActionResult> AddAnswer(
-        [FromRoute] Guid questionId, 
-        [FromBody] AddAnswerDto request, 
+        [FromRoute] Guid questionId,
+        [FromBody] AddAnswerDto request,
         CancellationToken cancellationToken)
     {
         return this.Ok("Add answer");
@@ -69,8 +78,8 @@ public class QuestionsController : ControllerBase
     
     [HttpGet("{questionId:guid}/comments")]
     public async Task<IActionResult> AddComment(
-        [FromRoute] Guid questionId, 
-        [FromBody] AddCommentDto request, 
+        [FromRoute] Guid questionId,
+        [FromBody] AddCommentDto request,
         CancellationToken cancellationToken)
     {
         return this.Ok("Add comment");

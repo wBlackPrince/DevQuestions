@@ -1,9 +1,8 @@
-using Microsoft.Extensions.Options;
+using DevQuestions.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddOpenApi();
+builder.Services.AddProgramDependencies();
 
 var app = builder.Build();
 
