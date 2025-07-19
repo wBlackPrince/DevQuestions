@@ -14,7 +14,7 @@ public class QuestionsController : ControllerBase
     {
         _questionService = questionService;
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> Create(
         [FromBody] CreateQuestionDto request,
