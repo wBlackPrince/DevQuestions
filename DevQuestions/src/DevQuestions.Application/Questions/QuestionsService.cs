@@ -1,4 +1,5 @@
-﻿using DevQuestions.Application.Extensions;
+﻿using CSharpFunctionalExtensions;
+using DevQuestions.Application.Extensions;
 using DevQuestions.Application.Questions.Failures;
 using DevQuestions.Application.Questions.Failures.Exceptions;
 using DevQuestionsContract.Questions;
@@ -26,14 +27,15 @@ public class QuestionsService : IQuestionsService
         _validator = validator;
     }
 
-    public async Task<Guid> Create(CreateQuestionDto questionDto, CancellationToken cancellationToken)
+    public async Task<Result<Guid, Failure>> Create(CreateQuestionDto questionDto, CancellationToken cancellationToken)
     {
         // валидация входных данных
         var validationResult = await _validator.ValidateAsync(questionDto, cancellationToken);
         if (!validationResult.IsValid)
         {
-            var errors = validationResult.ToErrors();
-            throw new QuestionValidationExceptions(errors);
+            Error[] errors = validationResult.ToErrors();
+
+            return new Failure(errors);
         }
 
         // валидация бизнес-логики
@@ -43,7 +45,7 @@ public class QuestionsService : IQuestionsService
 
         if (openUserQuestionsCount > 3)
         {
-            throw new TooManyQuestionsErrorException();
+            return Errors.Questions.TooManyQuestions().ToFailure();
         }
 
         Guid questionId = Guid.NewGuid();
@@ -101,4 +103,16 @@ public class QuestionsService : IQuestionsService
     // {
     //     //
     // }
+}
+
+
+
+public class QuestionCalculator
+{
+    public Result<int, Failure> Calculate()
+    {
+        // какая-то операция
+
+        return Error.Failure("fail", "fail").ToFailure();
+    }
 }

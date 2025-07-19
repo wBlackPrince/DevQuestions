@@ -4,6 +4,7 @@ namespace Shared;
 
 public record Error
 {
+    public static Error None = new Error(string.Empty, string.Empty, ErrorType.None, null);
     public string Code { get; }
 
     public string Message { get; }
@@ -33,10 +34,17 @@ public record Error
 
     public static Error Failure(string? code, string message, string? invalidField = null) =>
         new Error(code ?? "failure", message, ErrorType.FAILURE, invalidField);
+
+    public Failure ToFailure() => this;
 }
 
 public enum ErrorType
 {
+    /// <summary>
+    /// неизвестная ошибка
+    /// </summary>
+    None,
+
     /// <summary>
     /// ошибка валидации
     /// </summary>
