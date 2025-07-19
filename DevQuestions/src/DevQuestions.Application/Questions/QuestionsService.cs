@@ -1,7 +1,11 @@
-﻿using DevQuestionsContract.Questions;
+﻿using DevQuestions.Application.Extensions;
+using DevQuestions.Application.Questions.Failures;
+using DevQuestions.Application.Questions.Failures.Exceptions;
+using DevQuestionsContract.Questions;
 using DevQuestionsDomain.Questions;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using Shared;
 
 namespace DevQuestions.Application.Questions;
 
@@ -28,15 +32,18 @@ public class QuestionsService : IQuestionsService
         var validationResult = await _validator.ValidateAsync(questionDto, cancellationToken);
         if (!validationResult.IsValid)
         {
-            throw new ValidationException(validationResult.Errors);
+            var errors = validationResult.ToErrors();
+            throw new QuestionValidationExceptions(errors);
         }
 
         // валидация бизнес-логики
         int openUserQuestionsCount = await _repository.GetOpenUserQuestionsAsync(questionDto.UserId, cancellationToken);
 
+        var existedQuestion = _repository.GetByIdAsync(Guid.Empty, cancellationToken);
+
         if (openUserQuestionsCount > 3)
         {
-            throw new ValidationException("Пользователь не может открыть больше 3 нерешенных вопросов");
+            throw new TooManyQuestionsErrorException();
         }
 
         Guid questionId = Guid.NewGuid();

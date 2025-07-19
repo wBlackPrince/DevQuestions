@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DevQuestionsDomain\DevQuestionsDomain.csproj" />
+      <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
