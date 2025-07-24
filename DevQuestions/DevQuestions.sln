@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevQuestions.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{A56BDF8E-81DC-42B7-9883-343FF9F9033F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevQuestions.Infrastructure.Communication", "DevQuestions.Infrastructure.Communication\DevQuestions.Infrastructure.Communication.csproj", "{F380494A-89A6-43E7-AA1D-60E89EA47E50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{A56BDF8E-81DC-42B7-9883-343FF9F9033F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A56BDF8E-81DC-42B7-9883-343FF9F9033F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A56BDF8E-81DC-42B7-9883-343FF9F9033F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F380494A-89A6-43E7-AA1D-60E89EA47E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F380494A-89A6-43E7-AA1D-60E89EA47E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F380494A-89A6-43E7-AA1D-60E89EA47E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F380494A-89A6-43E7-AA1D-60E89EA47E50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2601CA01-ED59-4076-BC13-83DF548402E3} = {FB07DC74-3CF8-4B85-A5D9-7B3831D2018D}
@@ -79,5 +85,6 @@ Global
 		{35775BC7-4020-4C6B-B375-D0BA85F0CD6C} = {FB07DC74-3CF8-4B85-A5D9-7B3831D2018D}
 		{17738B4A-32DD-4990-B95F-9B30BB5D6FF0} = {FB07DC74-3CF8-4B85-A5D9-7B3831D2018D}
 		{A56BDF8E-81DC-42B7-9883-343FF9F9033F} = {FB07DC74-3CF8-4B85-A5D9-7B3831D2018D}
+		{F380494A-89A6-43E7-AA1D-60E89EA47E50} = {FB07DC74-3CF8-4B85-A5D9-7B3831D2018D}
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,7 @@
 ﻿using DevQuestionsContract.Questions;
 using FluentValidation;
 
-namespace DevQuestions.Application.Questions;
+namespace DevQuestions.Application.Questions.CreateQuestion;
 
 public class CreateQuestionValidator: AbstractValidator<CreateQuestionDto>
 {
@@ -19,3 +19,4 @@ public class CreateQuestionValidator: AbstractValidator<CreateQuestionDto>
             .NotEmpty().WithMessage("Список тегов не может быть пустым");
     }
 }
+
