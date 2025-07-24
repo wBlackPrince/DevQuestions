@@ -1,4 +1,7 @@
+using DevQuestions.Application.Abstarctions;
 using DevQuestions.Application.Questions;
+using DevQuestions.Application.Questions.AddAnswer;
+using DevQuestions.Application.Questions.CreateQuestion;
 using DevQuestions.Presenters.ResponseExtensions;
 using DevQuestionsContract.Questions;
 using Microsoft.AspNetCore.Mvc;
@@ -10,19 +13,15 @@ namespace DevQuestions.Presenters.Questions;
 [Route("[controller]")]
 public class QuestionsController : ControllerBase
 {
-    private readonly IQuestionsService _questionService;
-
-    public QuestionsController(IQuestionsService questionService)
-    {
-        _questionService = questionService;
-    }
-
     [HttpPost]
     public async Task<IActionResult> Create(
+        [FromServices] ICommandHandler<Guid, CreateQuestionCommand> handler,
         [FromBody] CreateQuestionDto request,
         CancellationToken cancellationToken)
     {
-        var result = await _questionService.Create(request, cancellationToken);
+        var command = new CreateQuestionCommand(request);
+
+        var result = await handler.Handle(command, cancellationToken);
 
         return result.IsFailure ? result.Error.ToResponse() : Ok();
     }
@@ -72,11 +71,14 @@ public class QuestionsController : ControllerBase
 
     [HttpGet("{questionId:guid}/answers")]
     public async Task<IActionResult> AddAnswer(
+        [FromServices] ICommandHandler<Guid, AddAnswerCommand> handler,
         [FromRoute] Guid questionId,
         [FromBody] AddAnswerDto request,
         CancellationToken cancellationToken)
     {
-        return this.Ok("Add answer");
+        var command = new AddAnswerCommand(questionId, request);
+        var result = await handler.Handle(command, cancellationToken);
+        return result.IsFailure ? result.Error.ToResponse() : Ok(result.Value);
     }
     
     [HttpGet("{questionId:guid}/comments")]

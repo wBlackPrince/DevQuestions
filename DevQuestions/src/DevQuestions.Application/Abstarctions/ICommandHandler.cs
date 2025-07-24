@@ -1,6 +1,19 @@
-﻿namespace DevQuestions.Application.Abstarctions;
+﻿using CSharpFunctionalExtensions;
+using Shared;
 
-public interface ICommandHandler
+namespace DevQuestions.Application.Abstarctions;
+
+public interface ICommandHandler<TResponse, in TCommand>
+    where TCommand : ICommand
 {
-    
+    Task<Result<TResponse, Failure>> Handle(TCommand command, CancellationToken cancellationToken);
 }
+
+public interface ICommandHandler<in TCommand>
+    where TCommand : ICommand
+{
+    Task<UnitResult<Failure>> Handle(TCommand command, CancellationToken cancellationToken);
+}
+
+
+public interface ICommand;

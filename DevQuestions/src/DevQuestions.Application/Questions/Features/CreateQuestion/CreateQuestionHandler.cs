@@ -1,4 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
+using DevQuestions.Application.Abstarctions;
 using DevQuestions.Application.Extensions;
 using DevQuestions.Application.Questions.Failures;
 using DevQuestionsContract.Questions;
@@ -9,15 +10,15 @@ using Shared;
 
 namespace DevQuestions.Application.Questions.CreateQuestion;
 
-public class CreateQuestionHandler
+public class CreateQuestionHandler: ICommandHandler<Guid, CreateQuestionCommand>
 {
     private readonly IQuestionsRepository _repository;
-    private readonly ILogger<QuestionsService> _logger;
+    private readonly ILogger<CreateQuestionDto> _logger;
     private readonly IValidator<CreateQuestionDto> _validator;
 
     public CreateQuestionHandler(
         IQuestionsRepository repository,
-        ILogger<QuestionsService> logger,
+        ILogger<CreateQuestionDto> logger,
         IValidator<CreateQuestionDto> validator)
     {
         _repository = repository;
@@ -32,10 +33,12 @@ public class CreateQuestionHandler
     /// <param name="questionDto">Dto для создания вопроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Id созданного вопроса</returns>
-    public async Task<Result<Guid, Failure>> Handle(CreateQuestionDto questionDto, CancellationToken cancellationToken)
+    public async Task<Result<Guid, Failure>> Handle(
+        CreateQuestionCommand command,
+        CancellationToken cancellationToken)
     {
         // валидация входных данных
-        var validationResult = await _validator.ValidateAsync(questionDto, cancellationToken);
+        var validationResult = await _validator.ValidateAsync(command.QuestionDto, cancellationToken);
         if (!validationResult.IsValid)
         {
             Error[] errors = validationResult.ToErrors();
@@ -44,7 +47,9 @@ public class CreateQuestionHandler
         }
 
         // валидация бизнес-логики
-        int openUserQuestionsCount = await _repository.GetOpenUserQuestionsAsync(questionDto.UserId, cancellationToken);
+        int openUserQuestionsCount = await _repository.GetOpenUserQuestionsAsync(
+            command.QuestionDto.UserId,
+            cancellationToken);
 
         var existedQuestion = _repository.GetByIdAsync(Guid.Empty, cancellationToken);
 
@@ -57,11 +62,11 @@ public class CreateQuestionHandler
 
         Question question = new Question(
             questionId,
-            questionDto.Title,
-            questionDto.Text,
-            questionDto.UserId,
+            command.QuestionDto.Title,
+            command.QuestionDto.Text,
+            command.QuestionDto.UserId,
             null,
-            questionDto.TagIds.ToList());
+            command.QuestionDto.TagIds.ToList());
 
         await _repository.AddAsync(question, cancellationToken);
 
