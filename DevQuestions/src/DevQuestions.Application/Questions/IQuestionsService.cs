@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using DevQuestionsContract.Questions;
+using DevQuestionsContract.Questions.Dto;
 using Shared;
 
 namespace DevQuestions.Application.Questions;

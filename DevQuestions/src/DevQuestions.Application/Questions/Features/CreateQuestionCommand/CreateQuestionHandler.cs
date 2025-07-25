@@ -2,13 +2,13 @@
 using DevQuestions.Application.Abstarctions;
 using DevQuestions.Application.Extensions;
 using DevQuestions.Application.Questions.Failures;
-using DevQuestionsContract.Questions;
+using DevQuestionsContract.Questions.Dto;
 using DevQuestionsDomain.Questions;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Shared;
 
-namespace DevQuestions.Application.Questions.CreateQuestion;
+namespace DevQuestions.Application.Questions.Features.CreateQuestionCommand;
 
 public class CreateQuestionHandler: ICommandHandler<Guid, CreateQuestionCommand>
 {

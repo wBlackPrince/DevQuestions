@@ -1,7 +1,7 @@
-﻿using DevQuestionsContract.Questions;
+﻿using DevQuestionsContract.Questions.Dto;
 using FluentValidation;
 
-namespace DevQuestions.Application.Questions.CreateQuestion;
+namespace DevQuestions.Application.Questions.Features.CreateQuestionCommand;
 
 public class CreateQuestionValidator: AbstractValidator<CreateQuestionDto>
 {

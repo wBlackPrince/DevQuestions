@@ -5,22 +5,22 @@ using DevQuestionsDomain.Questions;
 using Microsoft.EntityFrameworkCore;
 using Shared;
 
-namespace DevQuestions.Infrastructure.Postgres.Repositories;
+namespace DevQuestions.Infrastructure.Postgres.Questions;
 
 public class QuestionsEfCoreRepository: IQuestionsRepository
 {
-    private readonly QuestionsDbContext _dbContext;
+    private readonly QuestionsReadDbContext _readDbContext;
 
-    public QuestionsEfCoreRepository(QuestionsDbContext context)
+    public QuestionsEfCoreRepository(QuestionsReadDbContext context)
     {
-        _dbContext = context;
+        _readDbContext = context;
     }
 
     public async Task<Guid> AddAsync(Question question, CancellationToken cancellationToken)
     {
-        await _dbContext.Questions.AddAsync(question, cancellationToken);
+        await _readDbContext.Questions.AddAsync(question, cancellationToken);
 
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        await _readDbContext.SaveChangesAsync(cancellationToken);
 
         return question.Id;
     }
@@ -37,7 +37,7 @@ public class QuestionsEfCoreRepository: IQuestionsRepository
 
     public async Task<Result<Question, Failure>> GetByIdAsync(Guid questionId, CancellationToken cancellationToken)
     {
-        var question = await _dbContext.Questions
+        var question = await _readDbContext.Questions
             .Include(q => q.Answers)
             .Include(q => q.Solution)
             .FirstOrDefaultAsync(q => q.Id == questionId, cancellationToken);

@@ -2,7 +2,7 @@
 using DevQuestions.Application.Abstarctions;
 using Shared;
 
-namespace DevQuestions.Application.Questions.SelectSolution;
+namespace DevQuestions.Application.Questions.Features.SelectSolutionCommand;
 
 public class SelectSolutionHandler : ICommandHandler<Guid, SelectSolutionCommand>
 {

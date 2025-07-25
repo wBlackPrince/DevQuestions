@@ -1,16 +1,13 @@
 ﻿using CSharpFunctionalExtensions;
 using DevQuestions.Application.Abstarctions;
-using DevQuestions.Application.Communication;
-using DevQuestions.Application.Database;
 using DevQuestions.Application.Extensions;
-using DevQuestions.Application.Questions.Failures;
-using DevQuestionsContract.Questions;
+using DevQuestionsContract.Questions.Dto;
 using DevQuestionsDomain.Questions;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Shared;
 
-namespace DevQuestions.Application.Questions.AddAnswer;
+namespace DevQuestions.Application.Questions.Features.AddAnswerCommand;
 
 public class AddAnswerHandler: ICommandHandler<Guid, AddAnswerCommand>
 {

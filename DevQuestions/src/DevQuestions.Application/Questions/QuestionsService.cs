@@ -48,7 +48,7 @@ namespace DevQuestions.Application.Questions;
 //         //
 //     }
 //     
-//     public async Task SelectSolution(
+//     public async Task SelectSolutionCommand(
 //         Guid questionId,
 //         Guid answerId,
 //         CancellationToken cancellationToken)

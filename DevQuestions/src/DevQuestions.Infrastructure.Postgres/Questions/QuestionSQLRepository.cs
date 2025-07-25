@@ -2,11 +2,9 @@
 using Dapper;
 using DevQuestions.Application.Questions;
 using DevQuestionsDomain.Questions;
-using Microsoft.Extensions.Configuration;
-using Npgsql;
 using Shared;
 
-namespace DevQuestions.Infrastructure.Postgres.Repositories;
+namespace DevQuestions.Infrastructure.Postgres.Questions;
 
 public class QuestionsSQLRepository: IQuestionsRepository
 {

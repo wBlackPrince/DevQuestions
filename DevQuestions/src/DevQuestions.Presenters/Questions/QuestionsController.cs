@@ -1,9 +1,12 @@
 using DevQuestions.Application.Abstarctions;
 using DevQuestions.Application.Questions;
-using DevQuestions.Application.Questions.AddAnswer;
-using DevQuestions.Application.Questions.CreateQuestion;
+using DevQuestions.Application.Questions.Features.AddAnswerCommand;
+using DevQuestions.Application.Questions.Features.CreateQuestionCommand;
+using DevQuestions.Application.Questions.Features.GetQuestionsWithFiltersQuery;
 using DevQuestions.Presenters.ResponseExtensions;
 using DevQuestionsContract.Questions;
+using DevQuestionsContract.Questions.Dto;
+using DevQuestionsContract.Questions.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 
@@ -28,10 +31,15 @@ public class QuestionsController : ControllerBase
 
     [HttpGet]
     public async Task<IActionResult> Get(
+        [FromServices] IQueryHandler<QuestionResponse, GetQuestionsWithFiltersCommand> handler,
         [FromQuery] GetQuestionsDto request,
         CancellationToken cancellationToken)
     {
-        return this.Ok("Get questions with query parameters");
+        var query = new GetQuestionsWithFiltersCommand(request);
+
+        var result = await handler.Handle(query, cancellationToken);
+
+        return Ok(result);
     }
 
     [HttpGet("{questionId:guid}")]
@@ -80,7 +88,7 @@ public class QuestionsController : ControllerBase
         var result = await handler.Handle(command, cancellationToken);
         return result.IsFailure ? result.Error.ToResponse() : Ok(result.Value);
     }
-    
+
     [HttpGet("{questionId:guid}/comments")]
     public async Task<IActionResult> AddComment(
         [FromRoute] Guid questionId,

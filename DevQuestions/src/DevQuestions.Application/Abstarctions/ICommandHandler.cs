@@ -3,6 +3,9 @@ using Shared;
 
 namespace DevQuestions.Application.Abstarctions;
 
+
+public interface ICommand;
+
 public interface ICommandHandler<TResponse, in TCommand>
     where TCommand : ICommand
 {
@@ -14,6 +17,3 @@ public interface ICommandHandler<in TCommand>
 {
     Task<UnitResult<Failure>> Handle(TCommand command, CancellationToken cancellationToken);
 }
-
-
-public interface ICommand;
