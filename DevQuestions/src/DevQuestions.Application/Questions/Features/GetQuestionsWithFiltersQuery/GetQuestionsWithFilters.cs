@@ -36,7 +36,7 @@ public class GetQuestionsWithFilters: IQueryHandler<QuestionResponse, GetQuestio
         // если мы работаем с dapper-ом
         // var connection = _sqlConnectionFactory.Create();
         // connection.ExecuteReader("Select * From [Questions]");
-        
+
         var questions = await _questionsDbContext.ReadQuestions
             .Include(q => q.Solution)
             .Skip(command.Dto.page * command.Dto.pageSize)

@@ -2,7 +2,7 @@
 using DevQuestions.Application.Communication;
 using Shared;
 
-namespace DevQuestions.Infrastructure.Communication;
+namespace DEvQuestions.Infrastructure.Communication;
 
 public class UserService : IUsersService
 {

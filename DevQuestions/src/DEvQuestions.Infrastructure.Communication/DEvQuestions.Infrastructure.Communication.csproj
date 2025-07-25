@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DevQuestions.Application\DevQuestions.Application.csproj" />
+      <ProjectReference Include="..\DevQuestionsContract\DevQuestionsContract.csproj" />
+      <ProjectReference Include="..\DevQuestionsDomain\DevQuestionsDomain.csproj" />
+    </ItemGroup>
+
+</Project>
