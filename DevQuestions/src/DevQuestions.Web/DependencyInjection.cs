@@ -1,5 +1,8 @@
-﻿using DevQuestions.Application;
-using DevQuestions.Infrastructure.Postgres;
+﻿using DevQuestions.Infrastructure.ElasticSearch;
+using DevQuestions.Infrastructure.S3;
+using Questions.Presenters;
+using Shared;
+using Tags.Presenters;
 
 namespace DevQuestions.Web;
 
@@ -7,9 +10,11 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddProgramDependencies(this IServiceCollection services)
     {
+        services.AddQuestionsModule();
+        services.AddTagsModule();
+        services.AddElasticSearch();
+        services.AddS3();
         services.AddWebDependencies();
-        services.AddApplication();
-        services.AddPostrgresInfrastructure();
 
         return services;
     }

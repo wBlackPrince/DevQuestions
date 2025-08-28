@@ -1,4 +1,6 @@
-﻿using DevQuestions.Infrastructure.Postgres;
+﻿
+
+using Shared.Database;
 
 namespace DevQuestions.Web.Seeders;
 

@@ -1,13 +1,19 @@
-using DevQuestions.Infrastructure.Postgres;
 using DevQuestions.Web;
 using DevQuestions.Web.Middlewares;
+using Framework;
+using Tags;
+using Tags.Features;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddProgramDependencies();
 
+builder.Services.AddEndpoints(TagsAssembly.Assembly);
+
 var app = builder.Build();
+
+app.UseExceptionMiddleware();
 
 app.UseExceptionMiddleware();
 
@@ -18,5 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+
+app.MapEndpoints();
 
 app.Run();
