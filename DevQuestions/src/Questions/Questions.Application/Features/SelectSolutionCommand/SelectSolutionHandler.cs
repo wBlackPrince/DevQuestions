@@ -1,8 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
-using DevQuestions.Application.Abstarctions;
 using Shared;
+using Shared.Abstarctions;
 
-namespace DevQuestions.Application.Questions.Features.SelectSolutionCommand;
+namespace Questions.Application.Features.SelectSolutionCommand;
 
 public class SelectSolutionHandler : ICommandHandler<Guid, SelectSolutionCommand>
 {

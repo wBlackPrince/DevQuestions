@@ -1,4 +1,6 @@
-﻿namespace DevQuestions.Infrastructure.Postgres.Questions;
+﻿using Shared.Database;
+
+namespace Questions.Infrastructure.Postgres;
 
 public class QuestionsSeeders: ISeeder
 {

@@ -1,19 +1,19 @@
-﻿using Dapper;
-using DevQuestions.Application.Abstarctions;
-using DevQuestions.Application.Database;
-using DevQuestions.Application.FilesStorage;
-using DevQuestions.Application.Tags;
-using DevQuestionsContract.Questions.Dto;
-using DevQuestionsContract.Questions.Responses;
-using DevQuestionsDomain.Questions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Questions.Contracts.Dto;
+using Questions.Contracts.Responses;
+using Questions.Domain;
+using Shared.Abstarctions;
+using Shared.Database;
+using Shared.FilesStorage;
+using Tags.Contracts;
+using Tags.Contracts.Dtos;
 
-namespace DevQuestions.Application.Questions.Features.GetQuestionsWithFiltersQuery;
+namespace Questions.Application.Features.GetQuestionsWithFiltersQuery;
 
 public class GetQuestionsWithFilters: IQueryHandler<QuestionResponse, GetQuestionsWithFiltersCommand>
 {
     private readonly IFilesProvider _filesProvider;
-    private readonly ITagsReadDbContext _tagsDbContext;
+    private readonly ITagsContract _tagsContract;
     private readonly IQuestionsReadDbContext _questionsDbContext;
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
@@ -21,12 +21,12 @@ public class GetQuestionsWithFilters: IQueryHandler<QuestionResponse, GetQuestio
         IQuestionsReadDbContext questionsDbContext,
         ISqlConnectionFactory sqlConnectionFactory,
         IFilesProvider filesProvider,
-        ITagsReadDbContext tagsDbContext)
+        ITagsContract tagsContract)
     {
         _sqlConnectionFactory = sqlConnectionFactory;
         _questionsDbContext = questionsDbContext;
         _filesProvider = filesProvider;
-        _tagsDbContext = tagsDbContext;
+        _tagsContract = tagsContract;
     }
 
     public async Task<QuestionResponse> Handle(
@@ -53,10 +53,8 @@ public class GetQuestionsWithFilters: IQueryHandler<QuestionResponse, GetQuestio
 
         var questionTags = questions.SelectMany(q => q.Tags);
 
-        var tags = await _tagsDbContext.ReadTags
-            .Where(t => questionTags.Contains(t.Id))
-            .Select(t => t.Name)
-            .ToListAsync();
+        var tags = await _tagsContract.GetByIds(
+            new GetByIdsDto(questionTags.ToArray()));
 
         var questionsDto = questions.Select(q => new QuestionDto(
             q.Id,
@@ -65,7 +63,7 @@ public class GetQuestionsWithFilters: IQueryHandler<QuestionResponse, GetQuestio
             q.UserId,
             q.ScreenshotId is not null ? filesDict.Result[q.ScreenshotId.Value] : null,
             q.Solution.Id,
-            tags,
+            tags.Select(t => t.Name),
             q.Status.ToгRussianString()));
 
 

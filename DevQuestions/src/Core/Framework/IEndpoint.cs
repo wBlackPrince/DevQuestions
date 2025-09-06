@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Routing;
 
-namespace Tags.Features;
+namespace Framework;
 
 public interface IEndpoint
 {

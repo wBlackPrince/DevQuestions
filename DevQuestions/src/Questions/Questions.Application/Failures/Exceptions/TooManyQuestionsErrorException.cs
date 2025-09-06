@@ -1,7 +1,6 @@
-﻿using DevQuestions.Application.Exceptions;
-using Shared;
+﻿using Shared.Exceptions;
 
-namespace DevQuestions.Application.Questions.Failures.Exceptions;
+namespace Questions.Application.Failures.Exceptions;
 
 public class TooManyQuestionsErrorException: BadRequestException
 {

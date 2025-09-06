@@ -1,17 +1,14 @@
-﻿using DevQuestions.Application.Abstarctions;
-using DevQuestions.Application.Questions;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Abstarctions;
 
-namespace DevQuestions.Application;
+namespace Questions.Application;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApplication(this IServiceCollection services)
+    public static IServiceCollection AddQuestionsApplication(this IServiceCollection services)
     {
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
-
-
 
         var assembly = typeof(DependencyInjection).Assembly;
 

@@ -1,4 +1,4 @@
-﻿namespace DevQuestionsContract.Questions.Dto;
+﻿namespace Questions.Contracts.Dto;
 
 public record QuestionDto(
     Guid Id,

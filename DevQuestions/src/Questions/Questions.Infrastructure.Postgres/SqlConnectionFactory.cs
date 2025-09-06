@@ -1,10 +1,9 @@
 ﻿using System.Data;
-using DevQuestions.Application;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using Shared.Database;
 
-namespace DevQuestions.Infrastructure.Postgres;
+namespace Questions.Infrastructure.Postgres;
 
 public class SqlConnectionFactory: ISqlConnectionFactory
 {

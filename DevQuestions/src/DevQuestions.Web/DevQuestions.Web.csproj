@@ -13,12 +13,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Core\Infrastructure\Infrastructure.ElasticSearch\DevQuestions.Infrastructure.ElasticSearch.csproj" />
-      <ProjectReference Include="..\Core\Infrastructure\Infrastructure.S3\DevQuestions.Infrastructure.S3.csproj" />
       <ProjectReference Include="..\Questions\Questions.Presenters\Questions.Presenters.csproj" />
       <ProjectReference Include="..\Tags\Tags.Presenters\Tags.Presenters.csproj" />
       <ProjectReference Include="..\Tags\Tags\Tags.csproj" />
-      <ProjectReference Include="..\Users\Users.Presenters\Users.Presenters.csproj" />
     </ItemGroup>
 
 </Project>

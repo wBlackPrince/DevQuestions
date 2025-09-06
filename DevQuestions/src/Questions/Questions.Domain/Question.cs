@@ -1,4 +1,4 @@
-namespace DevQuestionsDomain.Questions;
+namespace Questions.Domain;
 
 public class Question
 {

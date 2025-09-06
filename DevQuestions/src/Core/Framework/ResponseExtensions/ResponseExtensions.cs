@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 
-namespace Questions.Presenters.ResponseExtensions;
+namespace Framework.ResponseExtensions;
 
 public static class ResponseExtensions
 {
