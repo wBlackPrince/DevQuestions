@@ -1,5 +1,5 @@
-﻿using DevQuestionsContract.Questions.Dto;
+﻿using Questions.Contracts.Dto;
 
-namespace DevQuestionsContract.Questions.Responses;
+namespace Questions.Contracts.Responses;
 
 public record QuestionResponse(IEnumerable<QuestionDto> Questions, long TotalCount);

@@ -1,11 +1,11 @@
 ﻿using CSharpFunctionalExtensions;
-using DevQuestions.Application.Questions;
-using DevQuestions.Application.Questions.Failures;
-using DevQuestionsDomain.Questions;
-using Microsoft.EntityFrameworkCore;
+using Questions.Application;
+using Questions.Application.Failures;
+using Questions.Domain;
 using Shared;
+using Microsoft.EntityFrameworkCore;
 
-namespace DevQuestions.Infrastructure.Postgres.Questions;
+namespace Questions.Infrastructure.Postgres;
 
 public class QuestionsEfCoreRepository: IQuestionsRepository
 {

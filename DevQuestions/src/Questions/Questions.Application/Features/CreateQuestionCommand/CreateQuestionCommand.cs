@@ -1,6 +1,6 @@
-﻿using DevQuestions.Application.Abstarctions;
-using DevQuestionsContract.Questions.Dto;
+﻿using Questions.Contracts.Dto;
+using Shared.Abstarctions;
 
-namespace DevQuestions.Application.Questions.Features.CreateQuestionCommand;
+namespace Questions.Application.Features.CreateQuestionCommand;
 
 public record CreateQuestionCommand(CreateQuestionDto QuestionDto): ICommand;

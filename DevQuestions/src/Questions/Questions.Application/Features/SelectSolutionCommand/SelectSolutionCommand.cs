@@ -1,5 +1,5 @@
-﻿using DevQuestions.Application.Abstarctions;
+﻿using Shared.Abstarctions;
 
-namespace DevQuestions.Application.Questions.Features.SelectSolutionCommand;
+namespace Questions.Application.Features.SelectSolutionCommand;
 
 public record SelectSolutionCommand(): ICommand;

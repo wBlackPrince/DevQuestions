@@ -1,6 +1,6 @@
-﻿using DevQuestions.Application.Abstarctions;
-using DevQuestionsContract.Questions.Dto;
+﻿using Questions.Contracts.Dto;
+using Shared.Abstarctions;
 
-namespace DevQuestions.Application.Questions.Features.AddAnswerCommand;
+namespace Questions.Application.Features.AddAnswerCommand;
 
 public record AddAnswerCommand(Guid QuestionId, AddAnswerDto AddAnswerDto): ICommand;

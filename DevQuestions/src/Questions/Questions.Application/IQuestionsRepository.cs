@@ -1,8 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
-using DevQuestionsDomain.Questions;
+using Questions.Domain;
 using Shared;
 
-namespace DevQuestions.Application.Questions;
+namespace Questions.Application;
 
 public interface IQuestionsRepository
 {

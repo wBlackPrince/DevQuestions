@@ -1,11 +1,11 @@
-﻿using DevQuestions.Application.Communication;
-using DevQuestions.Application.Database;
-using DevQuestions.Application.Questions.Failures.Exceptions;
-using DevQuestionsContract.Questions;
+﻿//using DevQuestions.Application.Communication;
+
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using Questions.Contracts.Dto;
+using Shared.Database;
 
-namespace DevQuestions.Application.Questions;
+namespace Questions.Application;
 
 // public class QuestionsService : IQuestionsService
 // {
@@ -14,23 +14,19 @@ namespace DevQuestions.Application.Questions;
 //     private readonly IValidator<CreateQuestionDto> _createQuestionDtoValidator;
 //     private readonly IValidator<AddAnswerDto> _addAnswerDtoValidator;
 //     private readonly ITransactionManager _transactionManager;
-//     private readonly IUsersService _userService;
 //
 //     public QuestionsService(
 //         IQuestionsRepository repository,
 //         ILogger<QuestionsService> logger,
 //         IValidator<CreateQuestionDto> createQuestionDtoValidator,
 //         IValidator<AddAnswerDto> addAnswerDtoValidator,
-//         ITransactionManager transactionManager,
-//         IUsersService userService
-//         )
+//         ITransactionManager transactionManager)
 //     {
 //         _repository = repository;
 //         _logger = logger;
 //         _createQuestionDtoValidator = createQuestionDtoValidator;
 //         _addAnswerDtoValidator = addAnswerDtoValidator;
 //         _transactionManager = transactionManager;
-//         _userService = userService;
 //     }
 //
 //     public async Task UpdateQuestion(

@@ -1,12 +1,10 @@
 ﻿using CSharpFunctionalExtensions;
-using Questions.Domain;
-using Shared;
 
-namespace Questions.Application.FullTextSearch;
+namespace Shared.FullTextSearch;
 
 public interface ISearchProvider
 {
     Task<List<Guid>> SearchAsync(string query);
 
-    Task<UnitResult<Failure>> IndexQuestionsAsync(Question question);
+    Task<UnitResult<Failure>> IndexQuestionAsync<TEntity>(TEntity entity, string indexName);
 }

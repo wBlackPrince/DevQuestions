@@ -1,3 +1,3 @@
 ﻿namespace Tags.Contracts.Dtos;
 
-public record TagDto();
+public record TagDto(Guid Id, string Name);

@@ -1,6 +1,6 @@
-﻿using DevQuestions.Application.Abstarctions;
-using DevQuestionsContract.Questions.Dto;
+﻿using Questions.Contracts.Dto;
+using Shared.Abstarctions;
 
-namespace DevQuestions.Application.Questions.Features.GetQuestionsWithFiltersQuery;
+namespace Questions.Application.Features.GetQuestionsWithFiltersQuery;
 
 public record GetQuestionsWithFiltersCommand(GetQuestionsDto Dto): IQuery;

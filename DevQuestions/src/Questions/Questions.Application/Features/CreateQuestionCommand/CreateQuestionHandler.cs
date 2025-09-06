@@ -1,14 +1,14 @@
 ﻿using CSharpFunctionalExtensions;
-using DevQuestions.Application.Abstarctions;
-using DevQuestions.Application.Extensions;
-using DevQuestions.Application.Questions.Failures;
-using DevQuestionsContract.Questions.Dto;
-using DevQuestionsDomain.Questions;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using Questions.Application.Failures;
+using Questions.Contracts.Dto;
+using Questions.Domain;
 using Shared;
+using Shared.Abstarctions;
+using Shared.Extensions;
 
-namespace DevQuestions.Application.Questions.Features.CreateQuestionCommand;
+namespace Questions.Application.Features.CreateQuestionCommand;
 
 public class CreateQuestionHandler: ICommandHandler<Guid, CreateQuestionCommand>
 {

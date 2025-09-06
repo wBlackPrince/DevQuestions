@@ -1,8 +1,8 @@
-﻿using DevQuestions.Application.Questions;
-using DevQuestionsDomain.Questions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Questions.Application;
+using Questions.Domain;
 
-namespace DevQuestions.Infrastructure.Postgres.Questions;
+namespace Questions.Infrastructure.Postgres;
 
 public class QuestionsReadDbContext: DbContext, IQuestionsReadDbContext
 {

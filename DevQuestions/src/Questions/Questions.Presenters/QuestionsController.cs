@@ -1,16 +1,13 @@
-using DevQuestions.Application.Abstarctions;
-using DevQuestions.Application.Questions;
-using DevQuestions.Application.Questions.Features.AddAnswerCommand;
-using DevQuestions.Application.Questions.Features.CreateQuestionCommand;
-using DevQuestions.Application.Questions.Features.GetQuestionsWithFiltersQuery;
-using DevQuestions.Presenters.ResponseExtensions;
-using DevQuestionsContract.Questions;
-using DevQuestionsContract.Questions.Dto;
-using DevQuestionsContract.Questions.Responses;
+using Framework.ResponseExtensions;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
+using Questions.Application.Features.AddAnswerCommand;
+using Questions.Application.Features.CreateQuestionCommand;
+using Questions.Application.Features.GetQuestionsWithFiltersQuery;
+using Questions.Contracts.Dto;
+using Questions.Contracts.Responses;
+using Shared.Abstarctions;
 
-namespace DevQuestions.Presenters.Questions;
+namespace Questions.Presenters;
 
 [ApiController]
 [Route("[controller]")]

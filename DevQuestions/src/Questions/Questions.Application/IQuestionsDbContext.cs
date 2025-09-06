@@ -1,7 +1,6 @@
-﻿using DevQuestionsDomain.Questions;
-using DevQuestionsDomain.Tags;
+﻿using Questions.Domain;
 
-namespace DevQuestions.Application.Questions;
+namespace Questions.Application;
 
 public interface IQuestionsReadDbContext
 {

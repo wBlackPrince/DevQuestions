@@ -2,7 +2,7 @@
 
 using Shared;
 
-namespace DevQuestions.Application.Questions.Failures;
+namespace Questions.Application.Failures;
 
 public partial class Errors
 {

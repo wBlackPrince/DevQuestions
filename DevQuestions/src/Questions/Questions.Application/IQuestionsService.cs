@@ -1,9 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
-using DevQuestionsContract.Questions;
-using DevQuestionsContract.Questions.Dto;
+using Questions.Contracts.Dto;
 using Shared;
 
-namespace DevQuestions.Application.Questions;
+namespace Questions.Application;
 
 public interface IQuestionsService
 {

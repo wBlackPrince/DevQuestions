@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+  
+
+    <ItemGroup>
+      <Folder Include="Options\" />
+    </ItemGroup>
+  
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\Framework\Framework.csproj" />
+      <ProjectReference Include="..\..\Core\Infrastructure\Infrastructure.ElasticSearch\DevQuestions.Infrastructure.ElasticSearch.csproj" />
+      <ProjectReference Include="..\..\Core\Infrastructure\Infrastructure.S3\DevQuestions.Infrastructure.S3.csproj" />
+      <ProjectReference Include="..\Tags.Contracts\Tags.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>
